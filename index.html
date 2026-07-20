@@ -2,331 +2,103 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline';">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Why Your Own Router &amp; LTE Contract Save Money</title>
+<title>Your Internet, Your Way</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0f172a;
-    --card: #1e293b;
-    --text: #f1f5f9;
-    --muted: #94a3b8;
-    --accent: #3b82f6;
-    --accent2: #10b981;
-    --warn: #f59e0b;
-    --danger: #ef4444;
-    --border: #334155;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    height: 100%;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow: hidden;
-  }
-  .deck {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
-  }
-  .slide {
-    min-width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 60px;
-    position: relative;
-  }
-  .slide-content {
-    max-width: 1100px;
-    width: 100%;
-    text-align: center;
-  }
-  h1 { font-size: 3.2rem; font-weight: 700; margin-bottom: 0.5em; line-height: 1.15; letter-spacing: -0.02em; }
-  h2 { font-size: 2.4rem; font-weight: 600; margin-bottom: 0.6em; line-height: 1.2; }
-  h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 0.5em; color: var(--accent); }
-  p, li { font-size: 1.35rem; line-height: 1.6; color: var(--muted); max-width: 800px; margin: 0 auto 0.8em; }
-  ul { text-align: left; display: inline-block; }
-  li { margin-bottom: 0.4em; }
-  .hero-img { max-width: 520px; width: 100%; height: auto; border-radius: 16px; margin: 20px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-  .slide-img { max-width: 480px; width: 100%; height: auto; border-radius: 12px; margin: 16px 0; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
-  .badge {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 20px;
-  }
-  .badge.ok { background: rgba(16,185,129,0.15); color: var(--accent2); }
-  .badge.warn { background: rgba(245,158,11,0.15); color: var(--warn); }
-  .badge.bad { background: rgba(239,68,68,0.15); color: var(--danger); }
-
-  /* Comparison table */
-  .compare-table {
-    width: 100%;
-    max-width: 900px;
-    margin: 24px auto;
-    border-collapse: collapse;
-    font-size: 1.15rem;
-    text-align: left;
-  }
-  .compare-table th {
-    padding: 14px 18px;
-    background: var(--card);
-    border-bottom: 2px solid var(--border);
-    font-weight: 600;
-    font-size: 1.05rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .compare-table td {
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-  }
-  .compare-table .col-a { color: var(--danger); }
-  .compare-table .col-b { color: var(--accent2); }
-
-  /* Cost cards */
-  .cost-row {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 24px;
-  }
-  .cost-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px 32px;
-    min-width: 280px;
-    text-align: left;
-  }
-  .cost-card h4 {
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 12px;
-    color: var(--muted);
-  }
-  .cost-card .price {
-    font-size: 2.8rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .cost-card .price.isp { color: var(--danger); }
-  .cost-card .price.own { color: var(--accent2); }
-  .cost-card .note {
-    font-size: 0.95rem;
-    color: var(--muted);
-    margin-top: 8px;
-  }
-  .cost-card .saving {
-    font-size: 1.2rem;
-    color: var(--accent2);
-    font-weight: 600;
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border);
-  }
-
-  /* Action list */
-  .action-list {
-    text-align: left;
-    max-width: 700px;
-    margin: 24px auto;
-  }
-  .action-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 26px;
-    margin-bottom: 16px;
-  }
-  .action-num {
-    min-width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #fff;
-    flex-shrink: 0;
-  }
-  .action-text h4 { font-size: 1.2rem; margin-bottom: 4px; }
-  .action-text p { font-size: 1.05rem; margin: 0; }
-
-  /* Navigation */
-  .nav-dots {
-    position: fixed;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 100;
-  }
-  .nav-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--border);
-    cursor: pointer;
-    transition: all 0.3s;
-    border: 2px solid transparent;
-  }
-  .nav-dot.active {
-    background: var(--accent);
-    transform: scale(1.3);
-  }
-  .nav-hint {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.85rem;
-    color: var(--muted);
-    opacity: 0.6;
-    z-index: 100;
-  }
-
-  /* Arrow buttons */
-  .arrow-btn {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(30,41,59,0.85);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-size: 1.4rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    transition: all 0.2s;
-    backdrop-filter: blur(8px);
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .arrow-btn:hover { background: var(--accent); border-color: var(--accent); }
-  .arrow-btn.prev { left: 16px; }
-  .arrow-btn.next { right: 16px; }
-  .arrow-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
-
-  /* Swipe hint for mobile */
-  .swipe-hint {
-    position: fixed;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-    align-items: center;
-    gap: 8px;
-    background: rgba(30,41,59,0.9);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 8px 18px;
-    font-size: 0.85rem;
-    color: var(--muted);
-    z-index: 100;
-    animation: swipePulse 2s ease-in-out infinite;
-  }
-  .swipe-hint .swipe-icon {
-    width: 24px;
-    height: 24px;
-    position: relative;
-  }
-  .swipe-hint .swipe-icon::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 2px;
-    background: var(--muted);
-    transform: translate(-50%, -50%);
-    border-radius: 2px;
-  }
-  .swipe-hint .swipe-icon::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 70%;
-    width: 0;
-    height: 0;
-    border-left: 6px solid var(--muted);
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    transform: translateY(-50%);
-    animation: swipeArrow 1.5s ease-in-out infinite;
-  }
-  @keyframes swipeArrow {
-    0%, 100% { left: 60%; }
-    50% { left: 80%; }
-  }
-  @keyframes swipePulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-  }
-
-  /* Progress bar */
-  .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: var(--accent);
-    transition: width 0.3s;
-    z-index: 100;
-  }
-
-  @media (max-width: 768px) {
-    .slide { padding: 24px 20px; }
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.7rem; }
-    p, li { font-size: 1.1rem; }
-    .cost-row { flex-direction: column; align-items: center; }
-    .nav-dots { display: none; }
-    .nav-hint { display: none; }
-    .swipe-hint { display: flex; }
-    .arrow-btn { width: 40px; height: 40px; font-size: 1.1rem; }
-    .arrow-btn.prev { left: 8px; }
-    .arrow-btn.next { right: 8px; }
-  }
+:root{
+  --bg:#08090a; --panel:#0f1011; --surface:#191a1b; --surface2:#28282c;
+  --text:#f7f8f8; --text2:#d0d6e0; --muted:#8a8f98; --faint:#62666d;
+  --indigo:#5e6ad2; --violet:#7170ff; --violet-hover:#828fff;
+  --green:#27a644; --emerald:#10b981; --danger:#f0708a; --warn:#e0b23c;
+  --border:rgba(255,255,255,0.08); --border-subtle:rgba(255,255,255,0.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--text);overflow:hidden;
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-feature-settings:"cv01","ss03";-webkit-font-smoothing:antialiased;}
+.deck{display:flex;width:100%;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100vw;min-height:100vh;width:100vw;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;position:relative}
+.slide-content{width:100%;max-width:100%;text-align:center}
+h1{font-size:clamp(2.4rem,5vw,4.5rem);font-weight:510;line-height:1.0;letter-spacing:-1.584px;margin-bottom:.35em;color:var(--text)}
+h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:510;line-height:1.02;letter-spacing:-1.056px;margin-bottom:.5em;color:var(--text)}
+h3{font-size:1.25rem;font-weight:590;letter-spacing:-.24px;margin-bottom:.4em;color:var(--text)}
+p,li{font-size:1.13rem;line-height:1.6;letter-spacing:-.165px;color:var(--muted);max-width:100%;margin:0 auto .8em}
+strong{color:var(--text2);font-weight:590}
+ul{text-align:left;display:inline-block;list-style:none}
+li{margin-bottom:.7em;padding-left:1.4em;position:relative}
+li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--violet)}
+.badge{display:inline-block;padding:5px 14px;border-radius:9999px;font-size:.78rem;font-weight:510;letter-spacing:.02em;margin-bottom:22px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text2)}
+.badge.ok{color:var(--emerald);border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.08)}
+.badge.warn{color:var(--warn);border-color:rgba(224,178,60,.3);background:rgba(224,178,60,.08)}
+.badge.bad{color:var(--danger);border-color:rgba(240,112,138,.3);background:rgba(240,112,138,.08)}
+.kicker{color:var(--muted);font-size:1.05rem;margin-top:14px}
+.note-warn{font-size:1.05rem;color:var(--warn);margin-top:18px}
+.note-ok{font-size:1.05rem;color:var(--emerald);margin-top:18px}
+.note-lead{font-size:1.15rem;color:var(--text2);margin-top:20px}
 </style>
 </head>
 <body>
-
+<style>
+/* Comparison table */
+.compare-table{width:100%;max-width:900px;margin:26px auto;border-collapse:separate;border-spacing:0;font-size:1.02rem;text-align:left;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.compare-table th{padding:14px 18px;background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border);font-weight:590;font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text2)}
+.compare-table td{padding:14px 18px;border-bottom:1px solid var(--border-subtle);vertical-align:top;color:var(--muted)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table td strong{color:var(--text)}
+.compare-table .col-a{color:var(--danger)}
+.compare-table .col-b{color:var(--emerald)}
+/* Cost cards */
+.cost-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.cost-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:28px 32px;min-width:280px;max-width:400px;text-align:left}
+.cost-card h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px;color:var(--muted);font-weight:510}
+.cost-card .price{font-size:2.6rem;font-weight:510;letter-spacing:-1px;margin-bottom:4px;color:var(--text)}
+.cost-card .price.isp{color:var(--danger)}
+.cost-card .price.own{color:var(--emerald)}
+.cost-card .note{font-size:.95rem;color:var(--muted);margin-top:8px;line-height:1.55}
+.cost-card .saving{font-size:1.08rem;color:var(--emerald);font-weight:510;margin-top:14px;padding-top:14px;border-top:1px solid var(--border-subtle);line-height:1.6}
+/* Action list */
+.action-list{text-align:left;max-width:720px;margin:26px auto}
+.action-item{display:flex;align-items:flex-start;gap:18px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:22px 26px;margin-bottom:14px;transition:background .2s}
+.action-item:hover{background:rgba(255,255,255,0.04)}
+.action-num{min-width:40px;height:40px;border-radius:50%;background:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:1.15rem;font-weight:590;color:#fff;flex-shrink:0}
+.action-text h4{font-size:1.15rem;margin-bottom:5px;color:var(--text);font-weight:590;letter-spacing:-.24px}
+.action-text p{font-size:1rem;margin:0;color:var(--muted)}
+/* Nav dots */
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:100}
+.nav-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.12);cursor:pointer;transition:all .3s;border:1px solid transparent}
+.nav-dot.active{background:var(--violet);transform:scale(1.35)}
+.nav-hint{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:.8rem;color:var(--faint);z-index:100;font-family:'JetBrains Mono',monospace}
+/* Arrow buttons */
+.arrow-btn{position:fixed;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:100;transition:all .2s;backdrop-filter:blur(8px);user-select:none;-webkit-tap-highlight-color:transparent}
+.arrow-btn:hover:not(:disabled){background:var(--indigo);border-color:var(--indigo)}
+.arrow-btn.prev{left:16px}
+.arrow-btn.next{right:16px}
+.arrow-btn:disabled{opacity:.2;cursor:default;pointer-events:none}
+/* Swipe hint */
+.swipe-hint{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:9999px;padding:8px 18px;font-size:.82rem;color:var(--muted);z-index:100;animation:swipePulse 2s ease-in-out infinite}
+@keyframes swipePulse{0%,100%{opacity:.7}50%{opacity:1}}
+/* Progress */
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--violet);transition:width .3s;z-index:100}
+@media(max-width:768px){
+  .slide{padding:20px}
+  p,li{font-size:1rem}
+  .cost-row{flex-direction:column;align-items:center}
+  .nav-dots,.nav-hint{display:none}
+  .swipe-hint{display:flex}
+  .arrow-btn{width:40px;height:40px;font-size:1rem}
+  .arrow-btn.prev{left:8px}.arrow-btn.next{right:8px}
+}
+</style>
 <div class="progress-bar" id="progress"></div>
-
 <div class="nav-dots" id="dots"></div>
 <div class="nav-hint">Press Space or Arrow keys to navigate</div>
-
 <button class="arrow-btn prev" id="prevBtn" onclick="prev()">&#10094;</button>
 <button class="arrow-btn next" id="nextBtn" onclick="next()">&#10095;</button>
-
-<div class="swipe-hint" id="swipeHint">
-  <div class="swipe-icon"></div>
-  <span>Swipe to navigate</span>
-</div>
+<div class="swipe-hint" id="swipeHint"><span>Swipe to navigate</span></div>
 
 <div class="deck" id="deck">
 
@@ -335,9 +107,8 @@
     <div class="slide-content">
       <div class="badge ok">For Homeowners</div>
       <h1>Your Internet, Your Way</h1>
-      <p>Why buying your own WiFi 6 router and choosing a separate LTE data contract saves money, stress, and headaches compared to taking the "free" router from your internet provider.</p>
-      <img src="router.png" class="hero-img" alt="Modern WiFi router">
-      <p style="font-size:1.05rem; opacity:0.6; margin-top:12px;">A straightforward guide for anyone who wants better internet without the fine print.</p>
+      <p>Why buying your own WiFi&nbsp;6 router and choosing a separate LTE data contract saves money, stress, and headaches compared to taking the &ldquo;free&rdquo; router from your internet provider.</p>
+      <p class="kicker">A straightforward guide for anyone who wants better internet without the fine print.</p>
     </div>
   </div>
 
@@ -345,16 +116,15 @@
   <div class="slide">
     <div class="slide-content">
       <div class="badge bad">The Trap</div>
-      <h2>The "Free" Router Isn't Really Free</h2>
-      <p>Your internet provider gives you a router. It seems like a nice gesture. But here's what actually happens:</p>
+      <h2>The &ldquo;Free&rdquo; Router Isn&rsquo;t Really Free</h2>
+      <p>Your internet provider gives you a router. It seems like a nice gesture. But here&rsquo;s what actually happens:</p>
       <ul>
-        <li><strong>Monthly rental fee hidden in your bill</strong> — usually R50 to R150 per month, forever</li>
-        <li><strong>Old, outdated technology</strong> — most ISP routers are WiFi 5 or older, struggling with modern homes</li>
-        <li><strong>Locked settings</strong> — you can't improve coverage or fix problems yourself</li>
-        <li><strong>You're stuck with them</strong> — changing providers means losing your router too</li>
+        <li><strong>Monthly rental fee hidden in your bill</strong> &mdash; usually R50 to R150 per month, forever</li>
+        <li><strong>Old, outdated technology</strong> &mdash; most ISP routers are WiFi&nbsp;5 or older, struggling with modern homes</li>
+        <li><strong>Locked settings</strong> &mdash; you can&rsquo;t improve coverage or fix problems yourself</li>
+        <li><strong>You&rsquo;re stuck with them</strong> &mdash; changing providers means losing your router too</li>
       </ul>
-      <img src="slow-internet.jpg" class="slide-img" alt="Frustrated with slow internet">
-      <p style="font-size:1.1rem; color:var(--warn); margin-top:16px;">After 2 years, you've paid for the router twice over — but you still don't own it.</p>
+      <p class="note-warn">After 2 years, you&rsquo;ve paid for the router twice over &mdash; but you still don&rsquo;t own it.</p>
     </div>
   </div>
 
@@ -362,22 +132,21 @@
   <div class="slide">
     <div class="slide-content">
       <div class="badge ok">The Upgrade</div>
-      <h2>What WiFi 6 Actually Means for You</h2>
-      <p>Think of WiFi like a highway. Older WiFi 5 is a two-lane road. WiFi 6 is a six-lane motorway with smart traffic lights.</p>
+      <h2>What WiFi&nbsp;6 Actually Means for You</h2>
+      <p>Think of WiFi like a highway. Older WiFi&nbsp;5 is a two-lane road. WiFi&nbsp;6 is a six-lane motorway with smart traffic lights.</p>
       <div class="cost-row">
         <div class="cost-card">
           <h4>Old WiFi 5 (ISP Router)</h4>
-          <div class="price isp"> congested</div>
+          <div class="price isp">Congested</div>
           <div class="note">Phones, tablets, TVs, and laptops all fight for the same narrow lane. Video calls stutter. Netflix buffers.</div>
         </div>
         <div class="cost-card">
           <h4>New WiFi 6 (Your Router)</h4>
-          <div class="price own"> smooth</div>
+          <div class="price own">Smooth</div>
           <div class="note">Handles 20+ devices calmly. Each device gets its own efficient lane. 4K video, video calls, and downloads all work at once.</div>
         </div>
       </div>
-      <img src="https://cdn.pixabay.com/photo/2014/09/18/12/10/blur-450807_1280.jpg" class="slide-img" alt="Speed motion blur">
-      <p style="font-size:1.1rem; margin-top:16px;">WiFi 6 also reaches further through walls. That dead spot in the bedroom? Gone.</p>
+      <p class="note-lead">WiFi&nbsp;6 also reaches further through walls. That dead spot in the bedroom? Gone.</p>
     </div>
   </div>
 
@@ -385,16 +154,15 @@
   <div class="slide">
     <div class="slide-content">
       <div class="badge ok">The Freedom</div>
-      <h2>CPE LTE: Internet That Doesn't Need a Phone Line</h2>
+      <h2>CPE LTE: Internet That Doesn&rsquo;t Need a Phone Line</h2>
       <p>CPE (Customer Premises Equipment) LTE is a fancy name for a simple idea: <strong>internet through the mobile network, straight into your home.</strong></p>
       <ul>
-        <li><strong>No landline required</strong> — works anywhere with cell signal</li>
-        <li><strong>Same router, different source</strong> — your WiFi 6 router connects to a small LTE box instead of a cable</li>
-        <li><strong>Competitive contracts</strong> — mobile data providers often charge less than fixed-line ISPs for the same speed</li>
-        <li><strong>Move house freely</strong> — unplug, move, plug back in. No technician visits.</li>
+        <li><strong>No landline required</strong> &mdash; works anywhere with cell signal</li>
+        <li><strong>Same router, different source</strong> &mdash; your WiFi&nbsp;6 router connects to a small LTE box instead of a cable</li>
+        <li><strong>Competitive contracts</strong> &mdash; mobile data providers often charge less than fixed-line ISPs for the same speed</li>
+        <li><strong>Move house freely</strong> &mdash; unplug, move, plug back in. No technician visits.</li>
       </ul>
-      <img src="https://cdn.pixabay.com/photo/2021/09/06/05/57/cell-tower-6600910_1280.jpg" class="slide-img" alt="Cell tower for LTE internet">
-      <p style="font-size:1.1rem; color:var(--accent2); margin-top:16px;">In South Africa and many EU countries, LTE home contracts now match fibre speeds at half the cost.</p>
+      <p class="note-ok">In South Africa and many EU countries, LTE home contracts now match fibre speeds at half the cost.</p>
     </div>
   </div>
 
@@ -404,43 +172,15 @@
       <div class="badge ok">The Comparison</div>
       <h2>Side by Side: What You Get</h2>
       <table class="compare-table">
-        <tr>
-          <th>What Matters</th>
-          <th class="col-a">ISP "Free" Router</th>
-          <th class="col-b">Your Own WiFi 6 + LTE</th>
-        </tr>
-        <tr>
-          <td><strong>Upfront cost</strong></td>
-          <td class="col-a">Nothing (seems free)</td>
-          <td class="col-b">R800 - R2,500 once</td>
-        </tr>
-        <tr>
-          <td><strong>Monthly cost</strong></td>
-          <td class="col-a">R50 - R150 hidden rental fee</td>
-          <td class="col-b">Zero router fee</td>
-        </tr>
-        <tr>
-          <td><strong>Speed & devices</strong></td>
-          <td class="col-a">Struggles past 5 devices</td>
-          <td class="col-b">Handles 20+ devices smoothly</td>
-        </tr>
-        <tr>
-          <td><strong>Coverage</strong></td>
-          <td class="col-a">Weak in bedrooms, gardens</td>
-          <td class="col-b">Stronger signal through walls</td>
-        </tr>
-        <tr>
-          <td><strong>Who owns it</strong></td>
-          <td class="col-a">The ISP — you return it if you leave</td>
-          <td class="col-b">You — yours forever, anywhere</td>
-        </tr>
-        <tr>
-          <td><strong>Switching providers</strong></td>
-          <td class="col-a">Painful — new router, new setup</td>
-          <td class="col-b">Easy — keep router, swap SIM or cable</td>
-        </tr>
+        <tr><th>What Matters</th><th class="col-a">ISP &ldquo;Free&rdquo; Router</th><th class="col-b">Your Own WiFi 6 + LTE</th></tr>
+        <tr><td><strong>Upfront cost</strong></td><td class="col-a">Nothing (seems free)</td><td class="col-b">R800 &ndash; R2,500 once</td></tr>
+        <tr><td><strong>Monthly cost</strong></td><td class="col-a">R50 &ndash; R150 hidden rental fee</td><td class="col-b">Zero router fee</td></tr>
+        <tr><td><strong>Speed &amp; devices</strong></td><td class="col-a">Struggles past 5 devices</td><td class="col-b">Handles 20+ devices smoothly</td></tr>
+        <tr><td><strong>Coverage</strong></td><td class="col-a">Weak in bedrooms, gardens</td><td class="col-b">Stronger signal through walls</td></tr>
+        <tr><td><strong>Who owns it</strong></td><td class="col-a">The ISP &mdash; you return it if you leave</td><td class="col-b">You &mdash; yours forever, anywhere</td></tr>
+        <tr><td><strong>Switching providers</strong></td><td class="col-a">Painful &mdash; new router, new setup</td><td class="col-b">Easy &mdash; keep router, swap SIM or cable</td></tr>
       </table>
-      <p style="font-size:1.1rem; margin-top:16px;">The upfront cost pays itself back in 6 to 18 months. After that, you save money every single month.</p>
+      <p class="note-lead">The upfront cost pays itself back in 6 to 18 months. After that, you save money every single month.</p>
     </div>
   </div>
 
@@ -449,12 +189,12 @@
     <div class="slide-content">
       <div class="badge ok">The Math</div>
       <h2>How It Pays for Itself</h2>
-      <p>Let's look at a realistic 2-year picture. Numbers are estimates in South African Rand (ZAR) but the pattern is the same in Euros or Dollars.</p>
+      <p>Let&rsquo;s look at a realistic 2-year picture. Numbers are estimates in South African Rand (ZAR) but the pattern is the same in Euros or Dollars.</p>
       <div class="cost-row">
         <div class="cost-card">
           <h4>ISP Router Rental (2 Years)</h4>
           <div class="price isp">R 3,600</div>
-          <div class="note">R150/month x 24 months. You own nothing at the end.</div>
+          <div class="note">R150/month &times; 24 months. You own nothing at the end.</div>
           <div class="saving">Total spent: R3,600<br>You own: nothing</div>
         </div>
         <div class="cost-card">
@@ -464,8 +204,7 @@
           <div class="saving">Total spent: R1,800<br>You own: everything<br><strong>Saved: R1,800</strong></div>
         </div>
       </div>
-      <img src="https://cdn.pixabay.com/photo/2020/02/17/13/38/money-4856513_1280.jpg" class="slide-img" alt="Piggy bank savings">
-      <p style="font-size:1.1rem; margin-top:16px;">After 2 years, you own a modern router worth R1,500 and you've saved R1,800. That's R3,300 of value in your pocket instead of the ISP's.</p>
+      <p class="note-lead">After 2 years, you own a modern router worth R1,500 and you&rsquo;ve saved R1,800. That&rsquo;s R3,300 of value in your pocket instead of the ISP&rsquo;s.</p>
     </div>
   </div>
 
@@ -473,16 +212,16 @@
   <div class="slide">
     <div class="slide-content">
       <div class="badge ok">The Reality</div>
-      <h2>"But I Can't Set It Up Myself"</h2>
-      <p>Yes, you can. Modern routers are designed for people who are not IT experts. Here's what actually happens:</p>
+      <h2>&ldquo;But I Can&rsquo;t Set It Up Myself&rdquo;</h2>
+      <p>Yes, you can. Modern routers are designed for people who are not IT experts. Here&rsquo;s what actually happens:</p>
       <ul>
         <li><strong>Step 1:</strong> Plug the router into the power and the LTE box (or fibre cable)</li>
-        <li><strong>Step 2:</strong> Open the app on your phone — it finds the router automatically</li>
+        <li><strong>Step 2:</strong> Open the app on your phone &mdash; it finds the router automatically</li>
         <li><strong>Step 3:</strong> Choose a name and password for your WiFi</li>
         <li><strong>Step 4:</strong> Done. Your devices connect just like before.</li>
       </ul>
-      <p style="font-size:1.2rem; color:var(--text); margin-top:20px;">If you can set up a WhatsApp account, you can set up a modern router. The hard part — cables, configurations, port settings — is handled automatically now.</p>
-      <p style="font-size:1.1rem; color:var(--warn); margin-top:16px;">And if you truly get stuck? A tech-savvy friend, a YouTube video, or the shop where you bought it will help in 10 minutes. You only do this once.</p>
+      <p class="note-lead">If you can set up a WhatsApp account, you can set up a modern router. The hard part &mdash; cables, configurations, port settings &mdash; is handled automatically now.</p>
+      <p class="note-warn">And if you truly get stuck? A tech-savvy friend, a YouTube video, or the shop where you bought it will help in 10 minutes. You only do this once.</p>
     </div>
   </div>
 
@@ -492,86 +231,43 @@
       <div class="badge ok">Your Move</div>
       <h2>Three Questions for Your ISP Tomorrow</h2>
       <div class="action-list">
-        <div class="action-item">
-          <div class="action-num">1</div>
-          <div class="action-text">
-            <h4>"Am I paying a monthly router rental fee?"</h4>
-            <p>Check your bill. Look for "router rental," "CPE fee," or "equipment charge." That's money you can stop spending.</p>
-          </div>
-        </div>
-        <div class="action-item">
-          <div class="action-num">2</div>
-          <div class="action-text">
-            <h4>"What speed is my current router?"</h4>
-            <p>If they say WiFi 5 or "802.11ac," it's old. WiFi 6 ("802.11ax") is the current standard that handles modern homes.</p>
-          </div>
-        </div>
-        <div class="action-item">
-          <div class="action-num">3</div>
-          <div class="action-text">
-            <h4>"Can I use my own router with your service?"</h4>
-            <p>Most ISPs say yes. If they say no, that's a red flag. A good provider lets you choose your own equipment.</p>
-          </div>
-        </div>
+        <div class="action-item"><div class="action-num">1</div><div class="action-text"><h4>&ldquo;Am I paying a monthly router rental fee?&rdquo;</h4><p>Check your bill. Look for &ldquo;router rental,&rdquo; &ldquo;CPE fee,&rdquo; or &ldquo;equipment charge.&rdquo; That&rsquo;s money you can stop spending.</p></div></div>
+        <div class="action-item"><div class="action-num">2</div><div class="action-text"><h4>&ldquo;What speed is my current router?&rdquo;</h4><p>If they say WiFi&nbsp;5 or &ldquo;802.11ac,&rdquo; it&rsquo;s old. WiFi&nbsp;6 (&ldquo;802.11ax&rdquo;) is the current standard that handles modern homes.</p></div></div>
+        <div class="action-item"><div class="action-num">3</div><div class="action-text"><h4>&ldquo;Can I use my own router with your service?&rdquo;</h4><p>Most ISPs say yes. If they say no, that&rsquo;s a red flag. A good provider lets you choose your own equipment.</p></div></div>
       </div>
-      <p style="font-size:1.2rem; color:var(--accent2); margin-top:28px;">Better internet, lower bills, and equipment you actually own. That's not complicated — that's just smart.</p>
+      <p class="note-ok">Better internet, lower bills, and equipment you actually own. That&rsquo;s not complicated &mdash; that&rsquo;s just smart.</p>
     </div>
   </div>
 
 </div>
-
 <script>
-  const deck = document.getElementById('deck');
-  const slides = document.querySelectorAll('.slide');
-  const total = slides.length;
-  let current = 0;
-
-  function buildDots() {
-    const dots = document.getElementById('dots');
-    dots.innerHTML = '';
-    for (let i = 0; i < total; i++) {
-      const d = document.createElement('div');
-      d.className = 'nav-dot' + (i === 0 ? ' active' : '');
-      d.onclick = () => goTo(i);
-      dots.appendChild(d);
-    }
+  const deck=document.getElementById('deck');
+  const slides=document.querySelectorAll('.slide');
+  const total=slides.length;
+  let current=0;
+  function buildDots(){
+    const dots=document.getElementById('dots');dots.innerHTML='';
+    for(let i=0;i<total;i++){const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');d.onclick=()=>goTo(i);dots.appendChild(d);}
   }
-
-  function update() {
-    deck.style.transform = `translateX(-${current * 100}vw)`;
-    document.querySelectorAll('.nav-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-    });
-    document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
-    document.getElementById('prevBtn').disabled = current === 0;
-    document.getElementById('nextBtn').disabled = current === total - 1;
-    document.getElementById('swipeHint').style.display = current > 0 ? 'none' : '';
+  function update(){
+    deck.style.transform=`translateX(-${current*100}vw)`;
+    document.querySelectorAll('.nav-dot').forEach((d,i)=>{d.classList.toggle('active',i===current);});
+    document.getElementById('progress').style.width=((current+1)/total*100)+'%';
+    document.getElementById('prevBtn').disabled=current===0;
+    document.getElementById('nextBtn').disabled=current===total-1;
+    document.getElementById('swipeHint').style.display=current>0?'none':'';
   }
-
-  function goTo(i) {
-    if (i >= 0 && i < total) { current = i; update(); }
-  }
-  function next() { if (current < total - 1) { current++; update(); } }
-  function prev() { if (current > 0) { current--; update(); } }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown') {
-      e.preventDefault(); next();
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      e.preventDefault(); prev();
-    }
+  function goTo(i){if(i>=0&&i<total){current=i;update();}}
+  function next(){if(current<total-1){current++;update();}}
+  function prev(){if(current>0){current--;update();}}
+  document.addEventListener('keydown',(e)=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='ArrowDown'){e.preventDefault();next();}
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();prev();}
   });
-
-  let touchStartX = 0;
-  document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
-  document.addEventListener('touchend', (e) => {
-    const dx = e.changedTouches[0].screenX - touchStartX;
-    if (dx < -50) next();
-    if (dx > 50) prev();
-  });
-
-  buildDots();
-  update();
+  let touchStartX=0;
+  document.addEventListener('touchstart',(e)=>{touchStartX=e.changedTouches[0].screenX;});
+  document.addEventListener('touchend',(e)=>{const dx=e.changedTouches[0].screenX-touchStartX;if(dx<-50)next();if(dx>50)prev();});
+  buildDots();update();
 </script>
 </body>
 </html>
