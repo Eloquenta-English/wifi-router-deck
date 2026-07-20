@@ -21,8 +21,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);overflow:hidden;
   font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   font-feature-settings:"cv01","ss03";-webkit-font-smoothing:antialiased;}
 .deck{display:flex;width:100%;height:100%;transition:transform .5s cubic-bezier(.4,0,.2,1)}
-.slide{min-width:100vw;min-height:100vh;width:100vw;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;position:relative}
-.slide-content{width:100%;max-width:100%;text-align:center}
+.slide{min-width:100vw;min-height:100vh;width:100vw;height:100vh;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;padding:20px;position:relative;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.slide::-webkit-scrollbar{width:8px}
+.slide::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.slide::-webkit-scrollbar-track{background:transparent}
+.slide-content{width:100%;max-width:100%;text-align:center;margin:auto 0}
 h1{font-size:clamp(2.4rem,5vw,4.5rem);font-weight:510;line-height:1.0;letter-spacing:-1.584px;margin-bottom:.35em;color:var(--text)}
 h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:510;line-height:1.02;letter-spacing:-1.056px;margin-bottom:.5em;color:var(--text)}
 h3{font-size:1.25rem;font-weight:590;letter-spacing:-.24px;margin-bottom:.4em;color:var(--text)}
